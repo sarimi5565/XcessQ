@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMK Maths Q&A</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+    
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>KMK Mathematics Question Bank 📚</h1>
+        <p class="subtitle">Your one-stop resource for SM015 & SM025.</p>
+        
+        <div class="toolbar">
+            <div class="field" style="grid-column: span 12 / span 12;">
+                <label for="searchInput">Keyword Search</label>
+                <input type="text" id="searchInput" placeholder="Search keywords in topic, subtopic, question...">
+            </div>
+            <div class="field">
+                <label for="courseFilter">Course</label>
+                <select id="courseFilter">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="topicFilter">Topic</label>
+                <select id="topicFilter">
+                    <option value="">All Topics</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="subtopicFilter">Subtopic</label>
+                <select id="subtopicFilter">
+                    <option value="">All Subtopics</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="difficultyFilter">Difficulty</label>
+                <select id="difficultyFilter">
+                    <option value="">All Difficulties</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+            <div class="btns">
+                 <button id="randomBtn">✨ Pick Random Question</button>
+                 <button id="resetBtn">🔄 Reset Filters</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid" id="questions-container">
+            </div>
+    </main>
+
+    <footer class="footer">
+        <p>Created for students of Kolej Matrikulasi Kedah. Happy studying! ✨</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

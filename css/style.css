@@ -1,0 +1,283 @@
+/* 1. FONT IMPORT & ROOT VARIABLES */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #005A9C; /* A deep, professional blue */
+    --secondary-color: #FDB813; /* A vibrant, engaging yellow/gold */
+    --bg-color: #F8F9FA; /* A very light, clean gray */
+    --card-bg-color: #FFFFFF;
+    --text-color: #343A40;
+    --light-text-color: #6C757D;
+    --border-color: #DEE2E6;
+    --success-color: #198754;
+    --danger-color: #DC3545;
+}
+
+/* 2. GENERAL STYLES & RESETS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* 3. HERO & TOOLBAR */
+.hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 90, 156, 0.2);
+}
+
+.hero h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.hero .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.toolbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Updated for better wrapping on medium screens */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.field label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    opacity: 0.9;
+}
+
+.field input, .field select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+.field input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.field select { appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
+.field option { color: var(--text-color); background: white; }
+.field input:focus, .field select:focus {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.btns {
+    display: flex;
+    gap: 0.75rem;
+    grid-column: span 2;
+    align-self: flex-end;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+button.small { font-size: 0.875rem; padding: 0.5rem 1rem; }
+#resetBtn { background-color: rgba(255, 255, 255, 0.2); color: white; }
+
+/* 4. QUESTIONS GRID & CARDS */
+main {
+    padding: 2rem 1rem;
+}
+
+.grid {
+    display: grid;
+    /* The minmax function here already provides good responsiveness */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+}
+
+.card .meta {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--light-text-color);
+}
+
+.card .tags {
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.tag {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.card .title {
+    padding: 0.5rem 1.25rem 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card .thumb {
+    padding: 0 1.25rem 1.25rem;
+}
+.thumb img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.card .actions {
+    padding: 0 1.25rem 1.25rem;
+    margin-top: auto;
+}
+
+.solution {
+    background-color: #E6F4FF;
+    padding: 1.25rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+    border-top: 2px dashed var(--primary-color);
+}
+.solution.open {
+    max-height: 1500px;
+    opacity: 1;
+    padding: 1.25rem;
+}
+.solution p { margin-bottom: 1rem; }
+.solution img, .solution iframe {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.solution iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--light-text-color);
+    padding: 4rem;
+}
+
+/* 5. FOOTER */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: var(--light-text-color);
+}
+
+/* ## 6. RESPONSIVE DESIGN (MEDIA QUERIES) ## */
+
+/* For Tablets and smaller devices */
+@media (max-width: 768px) {
+    .hero {
+        padding: 2rem 1rem;
+    }
+    
+    .toolbar {
+        /* Allow more flexible wrapping on tablets */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .btns {
+        /* Ensure buttons don't take up two full columns */
+        grid-column: auto;
+    }
+}
+
+/* For Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        /* Slightly reduce font size on very small screens for better fit */
+        font-size: 15px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem; /* Make header smaller */
+    }
+    
+    .toolbar {
+        /* Stack all filters and buttons vertically */
+        grid-template-columns: 1fr;
+    }
+    
+    .btns {
+        /* Stack buttons and make them full width */
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .grid {
+        /* Stack question cards vertically */
+        grid-template-columns: 1fr;
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    main {
+        padding: 1.5rem 0.5rem; /* Reduce side padding */
+    }
+}

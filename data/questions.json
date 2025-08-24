@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "course": "SM015",
+    "topic": "Number System",
+    "subtopic": "Complex Number",
+    "difficulty": "Easy",
+    "questionText": "Express $(1+2i)^2$ in the form of $a+bi$.",
+    "questionImages": ["images/q1_im.png"],
+    "answerText": "First, expand the expression: $(1+2i)^2 = 1^2 + 2(1)(2i) + (2i)^2 = 1 + 4i + 4i^2$. Since $i^2 = -1$, we get $1 + 4i - 4 = -3 + 4i$.",
+    "answerImages": ["images/a1_im.png"],
+    "answerVideo": "https://www.youtube.com/embed/jlxLtlprSfI"
+  },
+  {
+    "id": 2,
+    "course": "SM025",
+    "topic": "Sequences and Series",
+    "subtopic": "Arithmetic Series",
+    "difficulty": "Medium",
+    "questionText": "Find the sum of the first 20 terms of the arithmetic sequence where the first term is $a_1=5$ and the common difference is $d=3$.",
+    "questionImages": [],
+    "answerText": "Use the formula for the sum of an arithmetic series: $S_n = \\frac{n}{2}(2a_1 + (n-1)d)$. Substituting the values, we get $S_{20} = \\frac{20}{2}(2(5) + (20-1)3) = 10(10 + 19 \\times 3) = 10(10 + 57) = 670$.",
+    "answerImages": [],
+    "answerVideo": ""
+  }
+]
