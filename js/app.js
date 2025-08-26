@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ## GETTING THE NEW ELEMENT ##
     const subtopicFilter = document.getElementById('subtopicFilter');
-    
     const questionsContainer = document.getElementById('questions-container');
     const searchInput = document.getElementById('searchInput');
     const courseFilter = document.getElementById('courseFilter');
@@ -25,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questionsContainer.innerHTML = '<p class="empty">Could not load questions. Please check the data file.</p>';
         });
 
-    // (The displayQuestions function is unchanged)
+    // 2. Display questions
     function displayQuestions(questions) {
         questionsContainer.innerHTML = '';
         if (questions.length === 0) {
@@ -36,14 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
         questions.forEach(q => {
             const card = document.createElement('div');
             card.className = 'card';
+
+            // Combine topic, subtopic, and tags for display
+            const displayTags = [q.topic, q.subtopic, ...(q.tags || [])].filter(Boolean);
+
+            // Removed the inline style="display: none;" from the solution div
             card.innerHTML = `
                 <div class="meta">
                     <span>Course: <b>${q.course}</b></span>
                     <span>Difficulty: <b>${q.difficulty}</b></span>
                 </div>
                 <div class="tags">
-                    <span class="tag">${q.topic}</span>
-                    <span class="tag">${q.subtopic}</span>
+                    ${displayTags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
                 <div class="title">Q${q.id}: ${q.questionText}</div>
                 ${q.questionImages.length > 0 ? `<div class="thumb">${q.questionImages.map(img => `<img src="${img}" alt="Question Image">`).join('')}</div>` : ''}
@@ -56,69 +58,84 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${q.answerVideo ? `<iframe src="${q.answerVideo}" allowfullscreen></iframe>` : ''}
                 </div>
             `;
-            const answerBtn = card.querySelector('.show-answer-btn');
-            const solutionDiv = card.querySelector('.solution');
-            answerBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                const isVisible = solutionDiv.classList.toggle('open');
-                answerBtn.textContent = isVisible ? 'Hide Solution' : 'Show Solution';
-            });
             questionsContainer.appendChild(card);
         });
-        MathJax.typeset();
-    }
-    
-    // ## UPDATED TO POPULATE ONLY COURSE AND TOPIC INITIALLY ##
-    function populateInitialFilters(questions) {
-        const courses = [...new Set(questions.map(q => q.course))].sort();
-        const topics = [...new Set(questions.map(q => q.topic))].sort();
-        
-        courses.forEach(course => courseFilter.innerHTML += `<option value="${course}">${course}</option>`);
-        topics.forEach(topic => topicFilter.innerHTML += `<option value="${topic}">${topic}</option>`);
+
+        // Re-run MathJax to render LaTeX
+        if (window.MathJax) {
+            window.MathJax.typeset();
+        }
     }
 
-    // ## NEW FUNCTION TO DYNAMICALLY POPULATE SUBTOPICS ##
+    // 3. Populate Filters (Unchanged)
+    function populateInitialFilters(questions) {
+        const courses = [...new Set(questions.map(q => q.course))];
+        const topics = [...new Set(questions.map(q => q.topic))];
+        
+        courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseFilter.appendChild(option);
+        });
+
+        topics.forEach(topic => {
+            const option = document.createElement('option');
+            option.value = topic;
+            option.textContent = topic;
+            topicFilter.appendChild(option);
+        });
+
+        populateSubtopics();
+    }
+
     function populateSubtopics() {
         const selectedTopic = topicFilter.value;
         subtopicFilter.innerHTML = '<option value="">All Subtopics</option>'; // Reset
-
+        
         if (selectedTopic) {
-            const relevantSubtopics = allQuestions
+            const subtopics = [...new Set(allQuestions
                 .filter(q => q.topic === selectedTopic)
-                .map(q => q.subtopic);
-            
-            const uniqueSubtopics = [...new Set(relevantSubtopics)].sort();
-            uniqueSubtopics.forEach(subtopic => {
-                subtopicFilter.innerHTML += `<option value="${subtopic}">${subtopic}</option>`;
+                .map(q => q.subtopic)
+            )];
+            subtopics.sort().forEach(sub => { // Added sort for consistency
+                const option = document.createElement('option');
+                option.value = sub;
+                option.textContent = sub;
+                subtopicFilter.appendChild(option);
             });
         }
     }
 
-    // ## UPDATED FILTER LOGIC ##
+    // 4. Filter Logic (Unchanged)
     function applyFilters() {
         const searchTerm = searchInput.value.toLowerCase();
         const selectedCourse = courseFilter.value;
         const selectedTopic = topicFilter.value;
-        const selectedSubtopic = subtopicFilter.value; // Get subtopic value
+        const selectedSubtopic = subtopicFilter.value;
         const selectedDifficulty = difficultyFilter.value;
 
         const filteredQuestions = allQuestions.filter(q => {
-            const matchesSearch = searchTerm === '' || 
-                                  q.questionText.toLowerCase().includes(searchTerm) || 
-                                  q.topic.toLowerCase().includes(searchTerm) || 
-                                  q.subtopic.toLowerCase().includes(searchTerm);
+            const tagsMatch = q.tags && q.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+            const matchesSearch = searchTerm === '' ||
+                q.questionText.toLowerCase().includes(searchTerm) ||
+                q.topic.toLowerCase().includes(searchTerm) ||
+                q.subtopic.toLowerCase().includes(searchTerm) ||
+                `q${q.id}`.includes(searchTerm) ||
+                tagsMatch;
+
             const matchesCourse = selectedCourse === '' || q.course === selectedCourse;
             const matchesTopic = selectedTopic === '' || q.topic === selectedTopic;
-            const matchesSubtopic = selectedSubtopic === '' || q.subtopic === selectedSubtopic; // Add subtopic match
+            const matchesSubtopic = selectedSubtopic === '' || q.subtopic === selectedSubtopic;
             const matchesDifficulty = selectedDifficulty === '' || q.difficulty === selectedDifficulty;
-            
+
             return matchesSearch && matchesCourse && matchesTopic && matchesSubtopic && matchesDifficulty;
         });
         
         displayQuestions(filteredQuestions);
     }
     
-    // (Random question function is unchanged)
+    // 5. Random Question (Unchanged)
     function displayRandomQuestion() {
         if (allQuestions.length > 0) {
             const randomIndex = Math.floor(Math.random() * allQuestions.length);
@@ -127,25 +144,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ## UPDATED RESET FUNCTION ##
+    // 6. Reset Filters (Unchanged)
     function resetFilters() {
         searchInput.value = '';
         courseFilter.value = '';
         topicFilter.value = '';
-        subtopicFilter.value = ''; // Reset subtopic
+        subtopicFilter.value = '';
         difficultyFilter.value = '';
-        populateSubtopics(); // Reset subtopic dropdown content
+        populateSubtopics();
         displayQuestions(allQuestions);
     }
 
-    // ## UPDATED AND NEW EVENT LISTENERS ##
-    topicFilter.addEventListener('change', () => {
-        populateSubtopics(); // Update subtopics when a topic is chosen
-        applyFilters();      // Then apply all filters
+    // 7. Event Listeners
+    
+    // UPDATED Event delegation for "Show Solution" buttons
+    questionsContainer.addEventListener('click', (e) => {
+        // Check if the clicked element is the button we want
+        if (e.target.classList.contains('show-answer-btn')) {
+            const card = e.target.closest('.card');
+            const solution = card.querySelector('.solution');
+            
+            // Toggle the visibility class
+            solution.classList.toggle('is-visible');
+
+            // Update button text based on whether the class is present
+            const isVisible = solution.classList.contains('is-visible');
+            e.target.textContent = isVisible ? 'Hide Solution' : 'Show Solution';
+        }
     });
 
-    subtopicFilter.addEventListener('change', applyFilters); // New listener for subtopic
+    topicFilter.addEventListener('change', () => {
+        populateSubtopics();
+        applyFilters();
+    });
 
+    subtopicFilter.addEventListener('change', applyFilters);
     searchInput.addEventListener('input', applyFilters);
     courseFilter.addEventListener('change', applyFilters);
     difficultyFilter.addEventListener('change', applyFilters);
