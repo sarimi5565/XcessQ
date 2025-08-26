@@ -2,25 +2,123 @@
   {
     "id": 1,
     "course": "SM015",
-    "topic": "Number System",
-    "subtopic": "Complex Number",
-    "difficulty": "Easy",
-    "questionText": "Express $(1+2i)^2$ in the form of $a+bi$.",
-    "questionImages": ["images/q1_im.png"],
-    "answerText": "First, expand the expression: $(1+2i)^2 = 1^2 + 2(1)(2i) + (2i)^2 = 1 + 4i + 4i^2$. Since $i^2 = -1$, we get $1 + 4i - 4 = -3 + 4i$.",
-    "answerImages": ["images/a1_im.png"],
-    "answerVideo": "https://www.youtube.com/embed/jlxLtlprSfI"
+    "topic": "C1 Number Systems",
+    "subtopic": "1.2 Complex Numbers",
+    "difficulty": "Medium",
+    "tags": [
+      "conjugate",
+      "complex number"
+    ],
+    "questionText": "<p> Given $z_{1} = 1 + 2i$ and $z_{2} = 3 - 2i.$ Express $z_{1} + \\dfrac{1}{~\\overline{z_{2}}~}$ in the form of $a + bi$ where $ \\overline{z_{2}}$ is the conjugate of $z_{2}$. <p>",
+    "questionImages": [],
+    "answerText": "",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/g7MwRA927Ik"
   },
   {
     "id": 2,
-    "course": "SM025",
-    "topic": "Sequences and Series",
-    "subtopic": "Arithmetic Series",
+    "course": "SM015",
+    "topic": "C2 Equations, Inequalities & Absolute Values",
+    "subtopic": "2.3 Absolute Values",
     "difficulty": "Medium",
-    "questionText": "Find the sum of the first 20 terms of the arithmetic sequence where the first term is $a_1=5$ and the common difference is $d=3$.",
+    "tags": [
+      "inequality",
+      "absolute value",
+      "modulus"
+    ],
+    "questionText": "<p> Solve the inequality $\\left|\\dfrac{x-1}{x-3}\\right|\\leq2$ <p>",
     "questionImages": [],
-    "answerText": "Use the formula for the sum of an arithmetic series: $S_n = \\frac{n}{2}(2a_1 + (n-1)d)$. Substituting the values, we get $S_{20} = \\frac{20}{2}(2(5) + (20-1)3) = 10(10 + 19 \\times 3) = 10(10 + 57) = 670$.",
+    "answerText": "",
     "answerImages": [],
-    "answerVideo": ""
+    "answerVideo": "https://www.youtube.com/embed/pYcOOdpBkI8"
+  },
+  {
+    "id": 3,
+    "course": "SM015",
+    "topic": "C5 Functions & Graphs",
+    "subtopic": "5.1 Functions",
+    "difficulty": "Medium",
+    "tags": [
+      "functions",
+      "graphs",
+      "domain",
+      "range",
+      "quadratic",
+      "absolute value"
+    ],
+    "questionText": "<p> Sketch the following functions and state its domain and range.<p> <p> (a) $f(x)=4-(x-2)^2$ <p> <p> (b) $g(x)=\\sqrt{2x+10}$ <p>",
+    "questionImages": [],
+    "answerText": "",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/c-RUPsNKSxg"
+  },
+  {
+    "id": 4,
+    "course": "SM015",
+    "topic": "C1 Number Systems",
+    "subtopic": "1.2 Complex Numbers",
+    "difficulty": "Easy",
+    "tags": [
+      "polar form",
+      "argand",
+      "complex number"
+    ],
+    "questionText": "<p> Simplify the complex number $(1-i)(7+i)-1$.<p> Hence, sketch the argand diagram and then express the complex number in polar form.",
+    "questionImages": [],
+    "answerText": "",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/EKQxiOnJczQ"
+  },
+  {
+    "id": 5,
+    "course": "SM015",
+    "topic": "C2 Equations, Inequalities & Absolute Values",
+    "subtopic": "2.1 Equations",
+    "difficulty": "Easy",
+    "tags": [
+      "equation",
+      "indices",
+      "power",
+      "index"
+    ],
+    "questionText": "<p> Solve the equation $2^{2x-2}-2^{x+1}=2^{x}-2^{3}$ <p>",
+    "questionImages": [],
+    "answerText": "",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/zS3uF0AAXB8"
+  },
+  {
+    "id": 6,
+    "course": "SM015",
+    "topic": "C5 Functions & Graphs",
+    "subtopic": "5.2 Composite Functions",
+    "difficulty": "Medium",
+    "tags": [
+      "functions",
+      "composite"
+    ],
+    "questionText": "<p>Given that $g(x)=\\dfrac{x+1}{x}$ and the composite function $fg(x)=\\dfrac{4x+3}{x+1}.$ <p> <p> Find the function $f(x)$.<p>",
+    "questionImages": [],
+    "answerText": " ",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/PmJLlfMpOs4"
+  },
+  {
+    "id": 7,
+    "course": "SM015",
+    "topic": "C6 Polynomials",
+    "subtopic": "6.2 Remainder & Factor Theorem",
+    "difficulty": "Easy",
+    "tags": [
+      "factor",
+      "remainder",
+      "theorem",
+      "factorize"
+    ],
+    "questionText": "<p> Given $(x-1)$ is a factor of polynomial $P(x)=2x^{3}+ax^{2}-2x+b.$ When $P(x)$ is divided by $(x-2)$ the remainder is $-6$. Find the value of $a$ and $b$. Hence, factorize $P(x)$ completely. <p>",
+    "questionImages": [],
+    "answerText": " ",
+    "answerImages": [],
+    "answerVideo": "https://www.youtube.com/embed/Sg20BlDrBhY"
   }
 ]
