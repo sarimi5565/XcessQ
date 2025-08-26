@@ -21,7 +21,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -31,28 +31,27 @@ body {
 .hero {
     background-color: var(--primary-color);
     color: white;
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 1.5rem; /* Increased padding */
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 90, 156, 0.2);
+    border-bottom: 5px solid var(--secondary-color);
 }
 
 .hero h1 {
-    font-weight: 700;
+    font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-.hero .subtitle {
+.subtitle {
     font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .toolbar {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     display: grid;
-    /* Updated for better wrapping on medium screens */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
     align-items: flex-end;
 }
@@ -60,157 +59,144 @@ body {
 .field {
     display: flex;
     flex-direction: column;
-    text-align: left;
 }
 
 .field label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-    opacity: 0.9;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    text-align: left;
 }
 
-.field input, .field select {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: white;
-    font-family: 'Poppins', sans-serif;
+.field input,
+.field select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
     font-size: 1rem;
-    transition: all 0.2s ease-in-out;
-}
-.field input::placeholder { color: rgba(255, 255, 255, 0.7); }
-.field select { appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em; }
-.field option { color: var(--text-color); background: white; }
-.field input:focus, .field select:focus {
-    background-color: rgba(255, 255, 255, 0.25);
-    border-color: var(--secondary-color);
-    outline: none;
+    background: var(--card-bg-color);
+    color: var(--text-color);
 }
 
 .btns {
+    grid-column: span 12 / span 12; /* Full width */
     display: flex;
-    gap: 0.75rem;
-    grid-column: span 2;
-    align-self: flex-end;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    border: none;
+    transition: all 0.2s ease;
 }
-button:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-button.small { font-size: 0.875rem; padding: 0.5rem 1rem; }
-#resetBtn { background-color: rgba(255, 255, 255, 0.2); color: white; }
 
-/* 4. QUESTIONS GRID & CARDS */
+#randomBtn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+#randomBtn:hover {
+     background-color: #ffc107; /* Lighter gold */
+}
+
+#resetBtn {
+    background-color: transparent;
+    border: 1px solid var(--card-bg-color);
+    color: var(--card-bg-color);
+}
+#resetBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 4. MAIN CONTENT & CARDS */
 main {
-    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .grid {
     display: grid;
-    /* The minmax function here already provides good responsiveness */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .card {
-    background-color: var(--card-bg-color);
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+    background: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem;
 }
 
-.card .meta {
-    padding: 0.75rem 1.25rem;
-    background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color);
+.meta {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8rem;
-    font-weight: 500;
+    font-size: 0.85rem;
     color: var(--light-text-color);
+    margin-bottom: 0.5rem;
 }
 
-.card .tags {
-    padding: 0.5rem 1.25rem;
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+.tags {
+    margin-bottom: 1rem;
 }
+
 .tag {
-    background-color: var(--bg-color);
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    display: inline-block;
+    background-color: #e9ecef;
+    color: var(--light-text-color);
+    padding: 0.25rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.card .title {
-    padding: 0.5rem 1.25rem 1.25rem;
+.title {
     font-size: 1.1rem;
-    font-weight: 500;
+    margin-bottom: 1rem;
 }
 
-.card .thumb {
-    padding: 0 1.25rem 1.25rem;
-}
 .thumb img {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
 
-.card .actions {
-    padding: 0 1.25rem 1.25rem;
-    margin-top: auto;
+.actions {
+    text-align: right;
+}
+
+.small {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.small:hover {
+    opacity: 0.9;
 }
 
 .solution {
-    background-color: #E6F4FF;
-    padding: 1.25rem;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
-    border-top: 2px dashed var(--primary-color);
+    display: none; /* Initially hidden */
+    padding: 1rem;
+    background-color: #f8f9fa; /* Light background for the solution */
+    border-top: 1px solid var(--border-color);
+    border-radius: 0 0 8px 8px; /* Match the card's bottom corners */
+    margin-top: 1rem;
 }
-.solution.open {
-    max-height: 1500px;
-    opacity: 1;
-    padding: 1.25rem;
+
+/* This is the new class that will show the solution */
+.solution.is-visible {
+    display: block;
 }
-.solution p { margin-bottom: 1rem; }
-.solution img, .solution iframe {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-}
+
 .solution iframe {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
     border: none;
 }
 
@@ -257,27 +243,14 @@ main {
     }
 
     .hero h1 {
-        font-size: 1.5rem; /* Make header smaller */
-    }
-    
-    .toolbar {
-        /* Stack all filters and buttons vertically */
-        grid-template-columns: 1fr;
-    }
-    
-    .btns {
-        /* Stack buttons and make them full width */
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .grid {
-        /* Stack question cards vertically */
-        grid-template-columns: 1fr;
-        gap: 1rem; /* Reduce gap between cards */
+        font-size: 1.5rem;
     }
 
-    main {
-        padding: 1.5rem 0.5rem; /* Reduce side padding */
+    .card {
+        padding: 1rem;
+    }
+
+    .btns {
+        flex-direction: column;
     }
 }
