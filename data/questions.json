@@ -11,7 +11,7 @@
     ],
     "questionText": "<p> Given $z_{1} = 1 + 2i$ and $z_{2} = 3 - 2i.$ Express $z_{1} + \\dfrac{1}{~\\overline{z_{2}}~}$ in the form of $a + bi$ where $ \\overline{z_{2}}$ is the conjugate of $z_{2}$. <p>",
     "questionImages": [],
-    "answerText": "",
+    "answerText": "$x$",
     "answerImages": [],
     "answerVideo": "https://www.youtube.com/embed/g7MwRA927Ik"
   },
@@ -122,3 +122,4 @@
     "answerVideo": "https://www.youtube.com/embed/Sg20BlDrBhY"
   }
 ]
+
